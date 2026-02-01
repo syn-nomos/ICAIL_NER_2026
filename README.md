@@ -17,15 +17,15 @@ Overview of the entity distribution across Train, Development, and Test splits i
 | Metric / Type | Train Set | Dev Set | Test Set | Avg Length |
 | :--- | :---: | :---: | :---: | :---: |
 | **Total Sentences** | **17,679** | **4,909** | **3,879** | - |
-| `ORG` | 7,702 | 1,156 | 1,488 | 3.6 |
-| `LEG-REFS` | 3,877 | 1,213 | 1,068 | **10.8** |
-| `PUBLIC-DOCS` | 2,928 | 820 | 713 | **9.5** |
-| `GPE` | 4,150 | 1,383 | 579 | 2.1 |
-| `LOCATION` | 4,924 | 113 | 558 | 1.4 |
-| `PERSON` | 2,018 | 297 | 391 | 2.3 |
-| `DATE` | 2,592 | 521 | 457 | 4.0 |
-| `FACILITY` | 401 | 30 | 81 | 3.6 |
-| **Total Entities** | **28,592** | **5,533** | **5,335** | **5.95** |
+| `ORG` | 7,948 | 1,155 | 1,508 | 3.6 |
+| `LEG-REFS` | 3,982 | 1,213 | 1,073 | **10.8** |
+| `PUBLIC-DOCS` | 2,958 | 817 | 759 | **9.5** |
+| `GPE` | 4,168 | 1,382 | 583 | 2.1 |
+| `LOCATION` | 4,956 | 113 | 567 | 1.4 |
+| `PERSON` | 2,018 | 295 | 402 | 2.3 |
+| `DATE` | 2,598 | 515 | 463 | 4.0 |
+| `FACILITY` | 401 | 30 | 82 | 3.6 |
+| **Total Entities** | **29,029** | **5,520** | **5,437** | **5.95** |
 
 ---
 
@@ -59,14 +59,14 @@ Breakdown of the best performing model (XLM-R-Base) per entity type.
 
 | Entity Type | F1 Score (%) | Support |
 | :--- | :---: | :---: |
-| `ORG` | 54.55 | 1,488 |
-| `LEG-REFS` | **69.40** | 1,068 |
-| `PUBLIC-DOCS` | 32.29 | 713 |
-| `GPE` | 49.88 | 579 |
-| `LOCATION` | 68.12 | 558 |
-| `DATE` | **76.51** | 457 |
-| `PERSON` | **80.13** | 391 |
-| `FACILITY` | 24.21 | 81 |
+| `ORG` | 54.55 | 1,508 |
+| `LEG-REFS` | **69.40** | 1,073 |
+| `PUBLIC-DOCS` | 32.29 | 759 |
+| `GPE` | 49.88 | 583 |
+| `LOCATION` | 68.12 | 567 |
+| `DATE` | **76.51** | 463 |
+| `PERSON` | **80.13** | 402 |
+| `FACILITY` | 24.21 | 82 |
 | **Total (Micro)** | **61.58** | **5,335** |
 
 ---
@@ -96,7 +96,7 @@ Breakdown of the best performing model (XLM-R-Base) per entity type.
 3. **Reproducibility:**
    - Train Phase 1 Model:
      ```bash
-     python -m src.phase1_hybrid.train_ner --input_file data/conll/train.conll
+     python -m src.phase1_hybrid.train_ner --input_file data/conll/train_v2.conll
      ```
    - Run Multi-Agent Refinement:
      ```bash
