@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+torch
+transformers
+psycopg2-binary
+python-dotenv
+scikit-learn
+spacy
+rapidfuzz
+plotly
