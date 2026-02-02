@@ -29,6 +29,14 @@ Overview of the entity distribution across Train, Development, and Test splits i
 
 ---
 
+## 🛠️ Data Preprocessing & Tokenization
+
+To ensure consistency across all dataset splits (Train, Dev, Test) and maximize compatibility with modern NLP pipelines, we standardized the tokenization process using **spaCy**.
+
+- **Tokenizer**: `spacy` (Library v3.x)
+- **Model**: `el_core_news_sm` (Greek Small Model)
+- **Methodology**: All splits were re-tokenized to strictly follow the linguistic rules of the spaCy Greek model.
+
 ## ⚙️ Experimental Setup
 
 To evaluate the quality of the dataset, we utilized the **[LEXTREME](https://github.com/JoelNiklaus/LEXTREME)** benchmark framework. We evaluated five diverse Transformer architectures, ranging from general-purpose multilingual models to domain-specific Greek encoders:
