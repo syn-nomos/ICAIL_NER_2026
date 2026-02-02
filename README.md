@@ -17,25 +17,30 @@ Overview of the entity distribution across Train, Development, and Test splits i
 | Metric / Type | Train Set | Dev Set | Test Set | Avg Length |
 | :--- | :---: | :---: | :---: | :---: |
 | **Total Sentences** | **17,679** | **4,909** | **3,879** | - |
-| `ORG` | 7,948 | 1,155 | 1,508 | 3.6 |
-| `LEG-REFS` | 3,982 | 1,213 | 1,073 | **10.8** |
-| `PUBLIC-DOCS` | 2,958 | 817 | 759 | **9.5** |
-| `GPE` | 4,168 | 1,382 | 583 | 2.1 |
-| `LOCATION` | 4,956 | 113 | 567 | 1.4 |
-| `PERSON` | 2,018 | 295 | 402 | 2.3 |
-| `DATE` | 2,598 | 515 | 463 | 4.0 |
-| `FACILITY` | 401 | 30 | 82 | 3.6 |
-| **Total Entities** | **29,029** | **5,520** | **5,437** | **5.95** |
+| `ORG` | 7,948 | 1,155 | 1,774 | 3.6 |
+| `LEG-REFS` | 3,982 | 1,213 | 1,311 | **10.8** |
+| `PUBLIC-DOCS` | 2,958 | 817 | 796 | **9.5** |
+| `GPE` | 4,168 | 1,382 | 828 | 2.1 |
+| `LOCATION` | 4,956 | 113 | 707 | 1.4 |
+| `PERSON` | 2,018 | 295 | 516 | 2.3 |
+| `DATE` | 2,598 | 515 | 553 | 4.0 |
+| `FACILITY` | 401 | 30 | 84 | 3.6 |
+| **Total Entities** | **29,029** | **5,520** | **6,569** | **5.95** |
 
 ---
 
 ## 🛠️ Data Preprocessing & Tokenization
 
-To ensure consistency across all dataset splits (Train, Dev, Test) and maximize compatibility with modern NLP pipelines, we standardized the tokenization process using **spaCy**.
+To ensure consistency and compatibility with diverse NLP pipelines, we provide the dataset in two formats:
 
-- **Tokenizer**: `spacy` (Library v3.x)
-- **Model**: `el_core_news_sm` (Greek Small Model)
-- **Methodology**: All splits were re-tokenized to strictly follow the linguistic rules of the spaCy Greek model.
+1. **CoNLL Format (BIO Scheme)**:
+   - **Tokenizer**: `spacy` (`el_core_news_sm`).
+   - Standardized tokenization.
+   - Ready for immediate use with standard NER training scripts.
+
+2. **JSONL Format (Span-based)**:
+   - Contains **raw text** and **character offsets** for each entity.
+   - **Tokenizer Agnostic**: Ideal for researchers wishing to use custom tokenizers (e.g., BERT WordPiece, BPE) without alignment artifacts.
 
 ## ⚙️ Experimental Setup
 
@@ -47,7 +52,7 @@ To evaluate the quality of the dataset, we utilized the **[LEXTREME](https://git
 4. **Greek BERT**: A monolingual BERT model pre-trained specifically on general domain Greek corpora.
 5. **Greek Legal RoBERTa**: A domain-adapted version of XLM-R, further pre-trained on Greek legal documents.
 
-**Hyperparameters:** All models were fine-tuned for **15 epochs** with a batch size of 16 and a learning rate of 2e-5.
+**Hyperparameters:** All models were fine-tuned for **15 epochs** with a batch size of 8 and a learning rate of 1e-5.
 
 ## 🚀 Model Performance
 
@@ -55,34 +60,35 @@ To evaluate the quality of the dataset, we utilized the **[LEXTREME](https://git
 
 | Model Architecture | Micro-F1 (%) | Macro-F1 (%) |
 | :--- | :---: | :---: |
-| Multilingual MiniLM | 59.66 | 54.68 |
-| DistilBERT (Multilingual) | 57.32 | 53.38 |
-| **XLM-R-Base (Multilingual)** | **61.58** | **58.91** |
-| Greek BERT (Uncased) | 60.71 | 57.73 |
-| Greek Legal RoBERTa | 60.36 | 58.02 |
+| Multilingual MiniLM | 64.34 | 59.40 |
+| DistilBERT (Multilingual) | 61.62 | 58.09 |
+| XLM-R-Base (Multilingual) | 65.28 | 62.83 |
+| **Greek BERT (Uncased)** | **65.43** | 62.30 |
+| Greek Legal RoBERTa | 65.04 | **63.50** |
 
-### 🔍 Detailed Performance (XLM-R-Base)
+### 🔍 Detailed Performance (Greek BERT (Uncased))
 
-Breakdown of the best performing model (XLM-R-Base) per entity type.
+Breakdown of the best performing model (Greek BERT (Uncased)) per entity type.
 
 | Entity Type | F1 Score (%) | Support |
 | :--- | :---: | :---: |
-| `ORG` | 54.55 | 1,508 |
-| `LEG-REFS` | **69.40** | 1,073 |
-| `PUBLIC-DOCS` | 32.29 | 759 |
-| `GPE` | 49.88 | 583 |
-| `LOCATION` | 68.12 | 567 |
-| `DATE` | **76.51** | 463 |
-| `PERSON` | **80.13** | 402 |
-| `FACILITY` | 24.21 | 82 |
-| **Total (Micro)** | **61.58** | **5,335** |
+| `ORG` | 57.42 | 1,774 |
+| `LEG-REFS` | **73.20** | 1,311 |
+| `PUBLIC-DOCS` | 37.57 | 796 |
+| `GPE` | 59.66 | 828 |
+| `LOCATION` | 68.00 | 707 |
+| `DATE` | **74.15** | 553 |
+| `PERSON` | **93.65** | 516 |
+| `FACILITY` | 19.56 | 84 |
+| **Total (Micro)** | **65.43** | **6,569** |
 
 ---
 
 ## 📂 Repository Structure
 
-- `data/`: Contains the NER datasets in CoNLL format.
-    - `conll/`: Train, Dev, and Test splits.
+- `data/`: Contains the NER datasets in multiple formats.
+    - `conll/`: Standard BIO format (SpaCy tokenized).
+    - `jsonl/`: Span-based JSONL format (Tokenizer Agnostic).
     - `statistics/`: Detailed reports on dataset distribution.
 - `src/`: Source code of the system.
     - `phase1_hybrid/`: The initial hybrid prediction system (RoBERTa + RegEx + Lexicons).

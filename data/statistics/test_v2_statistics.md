@@ -2,51 +2,51 @@
 
 ## 📈 Overall Statistics
 - **Total Sentences**: `3,879`
-- **Total Tokens**: `139,800`
-- **Total Entities**: `5,437`
-- **Avg Entity Length (tokens)**: `5.94`
+- **Total Tokens**: `120,930`
+- **Total Entities**: `6,569`
+- **Avg Entity Length (tokens)**: `4.05`
 
 ## 🏷️ Entity Counts by Type
 | Entity Type | Count |
 | :---------- | ----: |
-| ORG         | 1,508 |
-| LEG-REFS    | 1,073 |
-| PUBLIC-DOCS |   759 |
-| GPE         |   583 |
-| LOCATION    |   567 |
-| DATE        |   463 |
-| PERSON      |   402 |
-| FACILITY    |    82 |
+| ORG         |  1774 |
+| LEG-REFS    |  1311 |
+| GPE         |   828 |
+| PUBLIC-DOCS |   796 |
+| LOCATION    |   707 |
+| DATE        |   553 |
+| PERSON      |   516 |
+| FACILITY    |    84 |
 
 ## 📑 Tag Counts (BIO Scheme)
 | Tag           | Count   |
 | :------------ | ------: |
-| O             | 107,478 |
-| I-LEG-REFS    |  11,003 |
-| I-PUBLIC-DOCS |   8,424 |
-| I-ORG         |   4,225 |
-| B-ORG         |   1,488 |
-| I-DATE        |   1,255 |
-| B-LEG-REFS    |   1,068 |
-| I-GPE         |     953 |
-| B-PUBLIC-DOCS |     713 |
-| I-PERSON      |     607 |
-| B-GPE         |     579 |
-| B-LOCATION    |     558 |
-| B-DATE        |     457 |
-| B-PERSON      |     391 |
-| I-FACILITY    |     291 |
-| I-LOCATION    |     229 |
-| B-FACILITY    |      81 |
+| O             |  94,343 |
+| I-LEG-REFS    |   8,192 |
+| I-PUBLIC-DOCS |   4,873 |
+| I-ORG         |   4,042 |
+| B-ORG         |   1,774 |
+| B-LEG-REFS    |   1,311 |
+| I-GPE         |   1,045 |
+| B-GPE         |     828 |
+| B-PUBLIC-DOCS |     796 |
+| B-LOCATION    |     707 |
+| I-PERSON      |     662 |
+| I-DATE        |     628 |
+| B-DATE        |     553 |
+| B-PERSON      |     516 |
+| I-LOCATION    |     343 |
+| I-FACILITY    |     233 |
+| B-FACILITY    |      84 |
 
 ## 📏 Average Length per Entity Type
-| Entity Type | Avg Length | 
-| :---------- | ---------: | 
-| PUBLIC-DOCS |      12.04 |  
-| LEG-REFS    |      11.25 |  
-| FACILITY    |       4.54 |  
-| ORG         |       3.79 |  
-| DATE        |       3.70 |   
-| GPE         |       2.63 |  
-| PERSON      |       2.48 |  
-| LOCATION    |       1.39 |  
+| Entity Type | Avg Length |
+| :---------- | ---------: |
+| LEG-REFS    |       7.25 |
+| PUBLIC-DOCS |       7.12 |
+| FACILITY    |       3.77 |
+| ORG         |       3.28 |
+| PERSON      |       2.28 |
+| GPE         |       2.26 |
+| DATE        |       2.14 |
+| LOCATION    |       1.49 |
